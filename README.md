@@ -3,7 +3,7 @@ A ring security camera health and motion checker written in python
 
 # Requirments:
 <ul>
-<ol>Python 3</ol>
+<li>Python 3</li>
 </ul>
 
 # Installation:
