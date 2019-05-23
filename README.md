@@ -6,7 +6,7 @@ A ring security camera health and motion checker written in python
 <ol>Python 3</ol>
 </ul>
 
-#Installation:
+# Installation:
 
 <ul>
 <li>git clone https://github.com/JaniniRami07/PyRing</li>
