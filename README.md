@@ -1,6 +1,14 @@
 # PyRing
 A ring security camera health and motion checker written in python
 
+# What can you do with PyRing?
+<ul>
+<li>Get a list of all your Ring cameras.</li>
+<li>Get several information for every camera(battery life,light status, etc...).</li>  
+<li>Riview lates motion detections.</li>  
+<li>Control the camera's alarm.</li>    
+</ul>
+
 # Requirments:
 <ul>
 <li>Python 3</li>
