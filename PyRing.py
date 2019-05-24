@@ -1,11 +1,30 @@
 #Author: Rami Janini
+import time
+from getpass import getpass
 from ring_doorbell import Ring
 
 
-myring = Ring('ring email', 'ring password')
+print('''
+
+	  ___       ___  _          
+	 / _ \__ __/ _ \(_)__  ___ _
+	/ ___/ // / , _/ / _ \/ _ `/
+	/_/   \_, /_/|_/_/_//_/\_, / 
+		/___/            /___/  
+			Author:Rami Janini
+					 v.1.1
+
+''')
+
+ringEmail = input('Ring Email: ')
+ringPassword = getpass('Ring Password: ')
+
+ring = Ring(ringEmail,ringPassword )
+
+RingCameras = ring.stickup_cams
 
 def CameraCheck():
-	for dev in list(myring.stickup_cams):
+	for dev in list(RingCameras):
 
 		dev.update()
 
@@ -18,11 +37,8 @@ def CameraCheck():
 		print("Light Status: %s" % dev.lights)
 		print("Siren Status: %s" % dev.siren)
 
-		
-
-
 def GetVideo():
-	stickupCamera = myring.stickup_cams[0]
+	stickupCamera = RingCameras[0]
 	stickupCamera.recording_download(
 		stickupCamera.history(limit=100, kind='motion')[0],
 								filename='last_motion.mp4', override=True)
@@ -30,11 +46,8 @@ def GetVideo():
 	#prints out a url with your latest motion video
 	#return stickupCamera.recording_url(stickupCamera.last_recording_id)
 
-
-
-
 def GetMotionAlerts():
-	for stickup_cams in myring.stickup_cams:
+	for stickup_cams in RingCameras:
 		#You can change the limit
 		for event in stickup_cams.history(limit=10):
 			print('Footage ID:     %s' % event['id'])
@@ -47,34 +60,49 @@ def GetMotionAlerts():
 		#To show only motion events:	
 		#event = stickup_cams.history(kind='motion')
 
+def sirenController():
+	for dev in list(RingCameras):
+	 seconds = input('After how many seconds do you want the alarm to be turned off? ')
+	 seconds=int(seconds)
+	 print("Activating alarm for " + str(seconds) + " seconds...")
+	 dev.siren = 60
+	 time.sleep(seconds)
+	 dev.siren = 0
+	 
 def startProgram():
-	print('''
+	print('Logged in as: ', ringEmail)
+	print("")
+	print('Your Devices List:')
+	print(RingCameras)
+	print("")
+	while True:
+		answer = input('Select: 1--> Cameras Check  2--> Motion Footage  3--> Motion Alerts  4--> Alarm Controller  5--> Exit  :')
 
- 	  ___       ___  _          
-	  / _ \__ __/ _ \(_)__  ___ _
- 	/ ___/ // / , _/ / _ \/ _ `/
-	/_/   \_, /_/|_/_/_//_/\_, / 
- 	    /___/            /___/  
-     		Authur:Rami Janini
-     		         v.1.0
-
-	''')
-
-	answer = input('Select: 1--> Camera Check  2--> For Motion Footage 3--> To Get Motion Alerts:')
-
-	if answer == '1':
-		print("")
-		CameraCheck()
-	elif answer == '2':
-		print("")
-		GetVideo()
-	elif answer == '3':
-		print("")
-		GetMotionAlerts()
-	else:
-		print("")
-		print('Invaild Input!!')		
+		if answer == '1':
+			print("")
+			CameraCheck()
+			print("")
+		elif answer == '2':
+			print("")
+			GetVideo()
+			print("")
+		elif answer == '3':
+			print("")
+			GetMotionAlerts()
+			print("")
+		elif answer == '4':
+			print("")
+			sirenController()
+			print("Alarm is off!")	
+			print("")
+		elif answer == '5':
+			print("")
+			print("Thanks For using PyRing!")
+			break
+		else:
+			print("")
+			print("Invaild input, please choose again!")
+			print("")
+			continue
 
 startProgram()
-myring.is_connected 
-True
