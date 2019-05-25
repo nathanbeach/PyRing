@@ -1,5 +1,5 @@
 # PyRing
-A ring security camera health and motion checker written in python
+A Ring device health and motion API written in Python
 
 # What can you do with PyRing?
 <ul>
