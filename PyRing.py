@@ -1,3 +1,4 @@
+
 #Author: Rami Janini
 import time
 from getpass import getpass
@@ -6,74 +7,149 @@ from ring_doorbell import Ring
 
 print('''
 
-	  ___       ___  _          
+	  ___       ___  _
 	 / _ \__ __/ _ \(_)__  ___ _
 	/ ___/ // / , _/ / _ \/ _ `/
-	/_/   \_, /_/|_/_/_//_/\_, / 
-		/___/            /___/  
+	/_/   \_, /_/|_/_/_//_/\_, /
+		/___/            /___/
 			Author:Rami Janini
-					 v.1.1
+					 v.1.2
 
 ''')
 
 ringEmail = input('Ring Email: ')
 ringPassword = getpass('Ring Password: ')
 
-ring = Ring(ringEmail,ringPassword )
+ring = Ring(ringEmail, ringPassword )
 
-RingCameras = ring.stickup_cams
+ringCameras = ring.stickup_cams
+ringDoorbells = ring.doorbells
+ringChimes = ring.chimes
 
 def CameraCheck():
-	for dev in list(RingCameras):
+	for dev in list(ringCameras + ringDoorbells + ringChimes):
 
 		dev.update()
 
-		print('Your Account ID: %s' % dev.account_id)
-		print('Your Camera ID: %s' % dev.id)
-		print("Has Subscription: %s" % dev.has_subscription)
-		print('Your Camera Adress: %s' % dev.address)
-		print("Camera's Wifi ESSID: %s" % dev.wifi_name)
-		print("Battery Life: %s" % dev.battery_life)
-		print("Light Status: %s" % dev.lights)
-		print("Siren Status: %s" % dev.siren)
+		print('Account ID: %s' % dev.account_id)
+		print('Device ID: %s' % dev.id)
+		print('Family Type: %s' % dev.family)
+		print('Device\'s Firmware: %s' % dev.firmware)
+		print('Device\'s Model: %s' % dev.model)
+		print('Device Subscription: %s' % dev.has_subscription)
+		print('Device\'s Adress: %s' % dev.address)
+		print('Device\'s Wifi ESSID: %s' % dev.wifi_name)
+		print('Wifi Strength: %s' % dev.wifi_signal_strength)
+		print('Battery Life: %s' % dev.battery_life)
+		print('Light Status: %s' % dev.lights)
+		print('Siren Status: %s' % dev.siren)
+		print('Connection Status: %s' % dev.connection_status)
 
 def GetVideo():
-	stickupCamera = RingCameras[0]
-	stickupCamera.recording_download(
-		stickupCamera.history(limit=100, kind='motion')[0],
-								filename='last_motion.mp4', override=True)
+	def stickCamVideo():
+		stickupCamera = ringCameras[0]
+		stickupCamera.recording_download(
+			stickupCamera.history(limit=100, kind='motion')[0],
+									filename='last_motion.mp4', override=True)
 
-	#prints out a url with your latest motion video
-	#return stickupCamera.recording_url(stickupCamera.last_recording_id)
+	def doorbellCamVideo():
+		doorbell = ringCameras[0]
+		doorbell.recording_download(
+			doorbell.history(limit=100, kind='motion')[0],
+									filename='last_motion.mp4', override=True)
+
+	while True:
+		camFootageDevice = input('Select: 1--> Security Camera Footage  2--> Doorbell Camera Footage  3--> Go Back : ')
+		if camFootageDevice == '1':
+			print("")
+			stickCamVideo()
+			print("")
+		elif camFootageDevice == '2':
+			print("")
+			doorbellCamVideo()
+			print("")
+		elif camFootageDevice == '3':
+			break
+		else:
+			continue
 
 def GetMotionAlerts():
-	for stickup_cams in RingCameras:
-		#You can change the limit
-		for event in stickup_cams.history(limit=10):
-			print('Footage ID:     %s' % event['id'])
-			print('Kind:     %s' % event['kind'])
-			print('Answered:     %s' % event['answered'])
-			print('Date/Time:     %s' % event['created_at'])
-			print('--' * 50)
 
+	def stickCamMotion():
+		for stickup_cams in ringCameras:
+			#You can change the limit
+			for event in stickup_cams.history(limit=10):
+				print('Footage ID:     %s' % event['id'])
+				print('Kind:     %s' % event['kind'])
+				print('Answered:     %s' % event['answered'])
+				print('Date/Time:     %s' % event['created_at'])
+				print('--' * 50)
 
-		#To show only motion events:	
-		#event = stickup_cams.history(kind='motion')
+	def doorbellCamMotion():
+		for doorbell in ringDoorbells:
+			#You can change the limit
+			for event in doorbell.history(limit=10):
+				print('Footage ID:     %s' % event['id'])
+				print('Kind:     %s' % event['kind'])
+				print('Answered:     %s' % event['answered'])
+				print('Date/Time:     %s' % event['created_at'])
+				print('--' * 50)
+	while True:
+		camMotionDevice = input('Select: 1--> Security Camera Motion Alerts  2--> Doorbell Camera Motion Alerts  3--> Go Back : ')
+		if camMotionDevice == '1':
+			print("")
+			stickCamMotion()
+			print("")
+		elif camMotionDevice == '2':
+			print("")
+			doorbellCamMotion()
+			print("")
+		elif camMotionDevice == '3':
+			break
+		else:
+			continue
 
 def sirenController():
-	for dev in list(RingCameras):
-	 seconds = input('After how many seconds do you want the alarm to be turned off? ')
-	 seconds=int(seconds)
-	 print("Activating alarm for " + str(seconds) + " seconds...")
-	 dev.siren = 60
-	 time.sleep(seconds)
-	 dev.siren = 0
-	 
+	def stickCamSiren():
+		for dev in list(ringCameras):
+
+			seconds = input('After how many seconds do you want the alarm to be turned off? ')
+			seconds=int(seconds)
+			print("Activating alarm for " + str(seconds) + " seconds...")
+			dev.siren = 60
+			time.sleep(seconds)
+			dev.siren = 0
+
+	def doorbellSiren():
+		for dev in list(ringDoorbells):
+
+			seconds = input('After how many seconds do you want the alarm to be turned off? ')
+			seconds=int(seconds)
+			print("Activating alarm for " + str(seconds) + " seconds...")
+			dev.siren = 60
+			time.sleep(seconds)
+			dev.siren = 0
+
+	while True:
+		camSiren = input('Select: 1--> Turn Security Camera Siren On  2--> Turn Doorbell Siren On  3--> Go Back : ')
+		if camSiren == '1':
+			print("")
+			stickCamSiren()
+			print("")
+		elif camSiren == '2':
+			print("")
+			doorbellSiren()
+			print("")
+		elif camSiren == '3':
+			break
+		else:
+			continue
+
 def startProgram():
 	print('Logged in as: ', ringEmail)
 	print("")
 	print('Your Devices List:')
-	print(RingCameras)
+	print(ringCameras)
 	print("")
 	while True:
 		answer = input('Select: 1--> Cameras Check  2--> Motion Footage  3--> Motion Alerts  4--> Alarm Controller  5--> Exit  :')
@@ -82,6 +158,7 @@ def startProgram():
 			print("")
 			CameraCheck()
 			print("")
+
 		elif answer == '2':
 			print("")
 			GetVideo()
@@ -93,7 +170,7 @@ def startProgram():
 		elif answer == '4':
 			print("")
 			sirenController()
-			print("Alarm is off!")	
+			print("Alarm is off!")
 			print("")
 		elif answer == '5':
 			print("")
