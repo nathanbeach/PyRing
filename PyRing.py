@@ -33,7 +33,7 @@ def CameraCheck():
 
 		print('Account ID: %s' % dev.account_id)
     		print('Address:    %s' % dev.address)
-   		 print('Family:     %s' % dev.family)
+   		print('Family:     %s' % dev.family)
     		print('ID:         %s' % dev.id)
     		print('Name:       %s' % dev.name)
     		print('Timezone:   %s' % dev.timezone)
