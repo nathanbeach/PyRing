@@ -32,13 +32,13 @@ def CameraCheck():
 		dev.update()
 
 		print('Account ID: %s' % dev.account_id)
-    		print('Address:    %s' % dev.address)
-   		print('Family:     %s' % dev.family)
-    		print('ID:         %s' % dev.id)
-    		print('Name:       %s' % dev.name)
-    		print('Timezone:   %s' % dev.timezone)
-   		print('Wifi Name:  %s' % dev.wifi_name)
-    		print('Wifi RSSI:  %s' % dev.wifi_signal_strength)
+		print('Address:    %s' % dev.address)
+		print('Family:     %s' % dev.family)
+		print('ID:         %s' % dev.id)
+		print('Name:       %s' % dev.name)
+		print('Timezone:   %s' % dev.timezone)
+		print('Wifi Name:  %s' % dev.wifi_name)
+		print('Wifi RSSI:  %s' % dev.wifi_signal_strength)
 		print('Battery Life: %s' % dev.battery_life)
 
 def GetVideo():
