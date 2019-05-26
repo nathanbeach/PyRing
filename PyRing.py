@@ -32,16 +32,14 @@ def CameraCheck():
 		dev.update()
 
 		print('Account ID: %s' % dev.account_id)
-		print('Device ID: %s' % dev.id)
-		print('Family Type: %s' % dev.family)
-		print('Device\'s Firmware: %s' % dev.firmware)
-		print('Device\'s Model: %s' % dev.model)
-		print('Device Subscription: %s' % dev.has_subscription)
-		print('Device\'s Adress: %s' % dev.address)
-		print('Device\'s Wifi ESSID: %s' % dev.wifi_name)
-		print('Wifi Strength: %s' % dev.wifi_signal_strength)
+    		print('Address:    %s' % dev.address)
+   		 print('Family:     %s' % dev.family)
+    		print('ID:         %s' % dev.id)
+    		print('Name:       %s' % dev.name)
+    		print('Timezone:   %s' % dev.timezone)
+   		print('Wifi Name:  %s' % dev.wifi_name)
+    		print('Wifi RSSI:  %s' % dev.wifi_signal_strength)
 		print('Battery Life: %s' % dev.battery_life)
-		print('Connection Status: %s' % dev.connection_status)
 
 def GetVideo():
 	def stickCamVideo():
