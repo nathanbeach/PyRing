@@ -1,5 +1,5 @@
 # PyRing
-A Ring device health and motion API written in Python
+A Ring device health and motion API written in Python, Version:1.3
 
 # What can you do with PyRing?
 <ul>
@@ -21,6 +21,10 @@ A Ring device health and motion API written in Python
 <li>pip install ring_doorbell</li>
 <li>cd PyRing & python PyRing.py</li>
 </ul>
+
+# What is new?
+In version 1.3 I have fixed some issues and added light control for stickup cameras!
+
 
 # Donate: 
 
