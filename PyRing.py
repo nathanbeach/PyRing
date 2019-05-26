@@ -41,8 +41,6 @@ def CameraCheck():
 		print('Device\'s Wifi ESSID: %s' % dev.wifi_name)
 		print('Wifi Strength: %s' % dev.wifi_signal_strength)
 		print('Battery Life: %s' % dev.battery_life)
-		print('Light Status: %s' % dev.lights)
-		print('Siren Status: %s' % dev.siren)
 		print('Connection Status: %s' % dev.connection_status)
 
 def GetVideo():
