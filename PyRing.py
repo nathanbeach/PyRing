@@ -24,10 +24,10 @@ ring = Ring(ringEmail, ringPassword )
 
 ringCameras = ring.stickup_cams
 ringDoorbells = ring.doorbells
-ringChimes = ring.chimes
+
 
 def CameraCheck():
-	for dev in list(ringCameras + ringDoorbells + ringChimes):
+	for dev in list(ringCameras + ringDoorbells):
 
 		dev.update()
 
