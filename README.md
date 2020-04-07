@@ -1,5 +1,5 @@
 # PyRing
-A Ring device health and motion API written in Python, Version:1.3
+A Ring device health and motion API written in Python, Version:2.0
 
 # What can you do with PyRing?
 <ul>
