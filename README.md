@@ -6,7 +6,8 @@ A Ring device health and motion API written in Python, Version:1.3
 <li>Get a list of all your Ring cameras.</li>
 <li>Get several information for every camera(battery life,light status, etc...).</li>  
 <li>Riview lates motion detections.</li>  
-<li>Control the camera's alarm.</li>    
+<li>Control the camera's lights.</li>   
+  <li>Get latest motion alerts saved to a provate cloud server and locally on your device.</li>
 </ul>
 
 # Requirments:
