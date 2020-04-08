@@ -19,8 +19,10 @@ A Ring device health and motion API written in Python, Version:2.0
 
 <ul>
 <li>git clone https://github.com/JaniniRami07/PyRing</li>
+<li>cd PyRing</li>
 <li>pip install -r requirements.txt</li>
-<li>cd PyRing & python PyRing.py</li>
+  <li>python3 PyRing.py</li>
+
 </ul>
 
 # What is new?
