@@ -19,7 +19,7 @@ A Ring device health and motion API written in Python, Version:2.0
 
 <ul>
 <li>git clone https://github.com/JaniniRami07/PyRing</li>
-<li>pip install ring_doorbell</li>
+<li>pip install -r requirments.txt</li>
 <li>cd PyRing & python PyRing.py</li>
 </ul>
 
