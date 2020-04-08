@@ -1,5 +1,5 @@
 #Author: Rami Janini
-#Version: 2.1: Fixing issues and adding light control.
+#Version: 2.1: Fixing previous issues, adding coloring theme
 import os
 import sys
 import time
