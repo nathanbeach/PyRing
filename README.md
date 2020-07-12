@@ -6,7 +6,7 @@ A script to get all Ring doorbells, stickup cameras and chimes information, moti
 <ul>
 <li>git clone https://github.com/JaniniRami07/PyRing</li>
 <li>cd PyRing</li>
-<li>pip install -r requirements.txt</li>
+<li>python3 -m pip install -r requirements.txt</li>
 <li>python3 PyRing.py</li>
 </ul>
 
