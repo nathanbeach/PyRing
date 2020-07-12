@@ -11,5 +11,5 @@ A script to get all Ring doorbells, stickup cameras and chimes information, moti
 </ul>
 
 # Contact:
-<h3>Janinirami@gmail.com</h3>
+<h3>pr0xy07@tutanota.com</h3>
 
