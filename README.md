@@ -1,20 +1,13 @@
-# PyRing
-A script to get all Ring doorbells, stickup cameras and chimes information, motion videos, etc...
+# Install
+python3 -m pip install -r requirements.txt
 
+# Notes for this hackage
 
-# Installation:
-<ul>
-<li>git clone https://github.com/JaniniRami07/PyRing</li>
-<li>cd PyRing</li>
-<li>python3 -m pip install -r requirements.txt</li>
-<li>python3 PyRing.py</li>
-</ul>
+run python pyring.py
 
-# Contributors
+if failures on individual downloads, retry by editing pyring.py line 104, call to cam_history
 
-- There are many ways to improve this project, feel free to contribute with your pull request
+to concat the videos files, e.g.:
 
-
-# Contact:
-<h3>pr0xy07@tutanota.com</h3>
-
+    printf "file '%s'\n" ./*.mp4 > files.txt
+    ffmpeg -f concat -safe 0 -i files.txt -c copy ../2020_11_ring_cam.mp4

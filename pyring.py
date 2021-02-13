@@ -101,7 +101,7 @@ def get_doorbell_cam_motion2(devices):
         current_cam = devices['doorbots'][0]
         print(current_cam)
 
-        events = current_cam.history(limit = 100, older_than=6906518921932661433)
+        events = current_cam.history(limit = 100) #, older_than=6906518921932661433
         get_events_recursive(current_cam, events)
         # print(len(events))
         # events2 = current_cam.history(limit = 100, older_than=events[-1]['id'])
