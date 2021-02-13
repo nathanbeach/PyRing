@@ -1,0 +1,4 @@
+Recordings/
+ring_access_token.json
+lib/__pycache__/
+.DS_Store

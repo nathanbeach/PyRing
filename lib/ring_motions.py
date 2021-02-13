@@ -99,24 +99,30 @@ def get_doorbell_cam_motion(devices):
                 option_ = int(option_) - 1
                 current_cam = devices['doorbots'][option_]
 
-            for event in current_cam.history(limit = 1):
-                motion_time = str(event['created_at']).replace(':', '-')
-
-            print(style.YELLOW('\n[*]') + style.RESET(f' Downloading {current_cam} motion video...'))
             recording_cam_name =  re.sub('[^a-zA-Z]+', '', str(current_cam))
-            mp4_download = current_cam.recording_download(
-                     current_cam.history(limit = 100, kind = 'motion')[0]['id'],
-                     filename = f'Recordings/{recording_cam_name} - {motion_time}.mp4', override=True)
-            if mp4_download:
-                print(style.GREEN('[+]') + style.RESET(f' Downlaoded latest footage from {current_cam}'))
-            else:
-                None
-            print(style.YELLOW('\n[*]') + style.RESET(f' Generating recording video URL...'))
-            recording_url = current_cam.recording_url(current_cam.last_recording_id)
-            if mp4_download:
-                print(style.GREEN('[+]') + style.RESET(f' Recording full URL: {recording_url}'))
-            else:
-                None
+            print(current_cam)
+
+            for event in current_cam.history(limit = 1000, enforce_limit=True, retry=10):
+                print(event['created_at'])
+
+                if event['created_at'].month == 11:
+                    motion_time = str(event['created_at']).replace(':', '-')
+                    id_to_get = event['id']
+
+                    print(style.YELLOW('\n[*]') + style.RESET(f' Downloading {current_cam} motion video...'))
+                    # mp4_download = current_cam.recording_download(
+                    #          id_to_get,
+                    #          filename = f'Recordings/{recording_cam_name} - {motion_time}.mp4', override=True)
+                    # if mp4_download:
+                    #     print(style.GREEN('[+]') + style.RESET(f' Downlaoded footage from {current_cam} at {motion_time}'))
+                    # else:
+                    #     None
+                    # print(style.YELLOW('\n[*]') + style.RESET(f' Generating recording video URL...'))
+                    # recording_url = current_cam.recording_url(current_cam.last_recording_id)
+                    # if mp4_download:
+                    #     print(style.GREEN('[+]') + style.RESET(f' Recording full URL: {recording_url}'))
+                    # else:
+                    #     None
 
             input(style.YELLOW('\n[*]') + style.RESET(' Press any key to return to devices list.'))
 
